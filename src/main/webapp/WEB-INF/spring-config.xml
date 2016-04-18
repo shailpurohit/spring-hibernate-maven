@@ -7,7 +7,7 @@
   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<context:component-scan base-package="com.cybage" />
+	<context:component-scan base-package="com.sample" />
 	<context:property-placeholder location="classpath:database.properties" />
 	<mvc:annotation-driven />
 
@@ -24,13 +24,13 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses">
 			<list>
-				<value>com.cybage.model.Employee</value>
-				<value>com.cybage.model.User</value>
-				<value>com.cybage.model.Todo</value>
-				<value>com.cybage.model.Room</value>
-				<value>com.cybage.model.Location</value>
-				<value>com.cybage.model.Facility</value>
-				<value>com.cybage.model.Purpose</value>
+				<value>com.sample.model.Employee</value>
+				<value>com.sample.model.User</value>
+				<value>com.sample.model.Todo</value>
+				<value>com.sample.model.Room</value>
+				<value>com.sample.model.Location</value>
+				<value>com.sample.model.Facility</value>
+				<value>com.sample.model.Purpose</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -49,12 +49,12 @@
 	<bean id="persistenceExceptionTranslationPostProcessor"
 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-	<bean id="dataDao" class="com.cybage.dao.DataDaoImpl"></bean>
-	<bean id="dataServices" class="com.cybage.services.DataServicesImpl"></bean>
-	<bean id="userDao" class="com.cybage.dao.UserDaoImpl"></bean>
-	<bean id="userServices" class="com.cybage.services.UserServicesImpl"></bean>
-	<bean id="todoDao" class="com.cybage.dao.TodoDaoImpl"></bean>
-	<bean id="todoServices" class="com.cybage.services.TodoServicesImpl"></bean>
-	<bean id="roomBookingDao" class="com.cybage.dao.RoomBookingDaoImpl"></bean>
-	<bean id="roomBookingServices" class="com.cybage.services.RoomBookingServicesImpl"></bean>
+	<bean id="dataDao" class="com.sample.dao.DataDaoImpl"></bean>
+	<bean id="dataServices" class="com.sample.services.DataServicesImpl"></bean>
+	<bean id="userDao" class="com.sample.dao.UserDaoImpl"></bean>
+	<bean id="userServices" class="com.sample.services.UserServicesImpl"></bean>
+	<bean id="todoDao" class="com.sample.dao.TodoDaoImpl"></bean>
+	<bean id="todoServices" class="com.sample.services.TodoServicesImpl"></bean>
+	<bean id="roomBookingDao" class="com.sample.dao.RoomBookingDaoImpl"></bean>
+	<bean id="roomBookingServices" class="com.sample.services.RoomBookingServicesImpl"></bean>
 </beans>
