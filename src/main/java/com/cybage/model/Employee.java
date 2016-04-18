@@ -20,7 +20,7 @@ public class Employee implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "\"EmployeeId\"")
+	@Column(name = "\"empCode\"")
 	private long empCode;
 
 	@Column(name = "\"empName\"")

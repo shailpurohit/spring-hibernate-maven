@@ -1,10 +1,9 @@
 target/
 # Ignore tmp files
 *~
-
 # Ignore personal dev files
 .classpath
 /.settings/
-/.project
+
 
 

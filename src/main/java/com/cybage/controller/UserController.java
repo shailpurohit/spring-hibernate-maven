@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,24 +11,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cybage.model.Employee;
 import com.cybage.model.Status;
-import com.cybage.services.DataServices;
+import com.cybage.model.User;
+import com.cybage.services.UserServices;
 
 @Controller
-@RequestMapping("/employee")
-public class RestController {
-
+@RequestMapping("/user")
+public class UserController {
+	
 	@Autowired
-	DataServices dataServices;
+	UserServices userServices;
 
 	static final Logger logger = Logger.getLogger(RestController.class);
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public @ResponseBody
-	Status addEmployee(@RequestBody Employee employee) {
+	List<User> getUser() {
+		List<User> userList = null;
 		try {
-			dataServices.addEntity(employee);
+			userList = userServices.getEntityList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return userList;
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public @ResponseBody
+	User getUser(@PathVariable("id") int id) {
+		User user = null;
+		try {
+			user = userServices.getEntityById(id);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody
+	Status addUser(@RequestBody User user) {
+		try {
+			userServices.addEntity(user);
 			return new Status(1, "Employee added Successfully !");
 		} catch (Exception e) {
 			// e.printStackTrace();
@@ -37,45 +62,16 @@ public class RestController {
 		}
 
 	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public @ResponseBody
-	Employee getEmployee(@PathVariable("id") long id) {
-		Employee employee = null;
-		try {
-			employee = dataServices.getEntityById(id);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return employee;
-	}
-
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public @ResponseBody
-	List<Employee> getEmployee() {
-
-		List<Employee> employeeList = null;
-		try {
-			employeeList = dataServices.getEntityList();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return employeeList;
-	}
-
+	
 	@RequestMapping(value = "delete/{id}", method = RequestMethod.GET)
 	public @ResponseBody
-	Status deleteEmployee(@PathVariable("id") long id) {
-
+	Status deleteUser(@PathVariable("id") int id) {
 		try {
-			dataServices.deleteEntity(id);
-			return new Status(1, "Employee deleted Successfully !");
+			userServices.deleteEntity(id);
+			return new Status(1, "User deleted Successfully !");
 		} catch (Exception e) {
 			return new Status(0, e.toString());
 		}
-
 	}
+	
 }

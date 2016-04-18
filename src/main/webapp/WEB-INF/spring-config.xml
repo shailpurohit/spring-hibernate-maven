@@ -25,6 +25,12 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.cybage.model.Employee</value>
+				<value>com.cybage.model.User</value>
+				<value>com.cybage.model.Todo</value>
+				<value>com.cybage.model.Room</value>
+				<value>com.cybage.model.Location</value>
+				<value>com.cybage.model.Facility</value>
+				<value>com.cybage.model.Purpose</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -45,4 +51,10 @@
 
 	<bean id="dataDao" class="com.cybage.dao.DataDaoImpl"></bean>
 	<bean id="dataServices" class="com.cybage.services.DataServicesImpl"></bean>
+	<bean id="userDao" class="com.cybage.dao.UserDaoImpl"></bean>
+	<bean id="userServices" class="com.cybage.services.UserServicesImpl"></bean>
+	<bean id="todoDao" class="com.cybage.dao.TodoDaoImpl"></bean>
+	<bean id="todoServices" class="com.cybage.services.TodoServicesImpl"></bean>
+	<bean id="roomBookingDao" class="com.cybage.dao.RoomBookingDaoImpl"></bean>
+	<bean id="roomBookingServices" class="com.cybage.services.RoomBookingServicesImpl"></bean>
 </beans>
