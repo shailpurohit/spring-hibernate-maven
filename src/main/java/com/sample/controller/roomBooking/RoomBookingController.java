@@ -4,13 +4,17 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sample.model.Status;
 import com.sample.model.roomBooking.Facility;
 import com.sample.model.roomBooking.Location;
+import com.sample.model.roomBooking.Occupieds;
 import com.sample.model.roomBooking.Purpose;
 import com.sample.model.roomBooking.Room;
 import com.sample.services.roomBooking.RoomBookingServices;
@@ -23,6 +27,17 @@ public class RoomBookingController {
 	RoomBookingServices roombookingServices;
 
 	static final Logger logger = Logger.getLogger(RoomBookingController.class);
+
+	@RequestMapping(value = "/room/book-a-room", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody
+	Status bookARoom(@RequestBody Occupieds occupy) {
+		try {
+			roombookingServices.bookARoom(occupy);
+			return new Status(1, "Room booked Successfully !");
+		} catch (Exception e) {
+			return new Status(0, e.toString());
+		}
+	}
 
 	@RequestMapping(value = "/room/list", method = RequestMethod.GET)
 	public @ResponseBody

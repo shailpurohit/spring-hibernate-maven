@@ -1,6 +1,7 @@
 package com.sample.model.roomBooking;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -39,10 +40,10 @@ public class Occupieds extends AbstractTimestampEntity implements Serializable {
 	private int durationMinutes;
 	
 	@Column(name = "\"start_time\"")
-	private Date startTime;
+	private Time startTime;
 	
 	@Column(name = "\"end_time\"")
-	private Date endTime;
+	private Time endTime;
 	
 	@Column(name = "\"meetingSubject\"")
 	private String meetingSubject;
@@ -96,19 +97,19 @@ public class Occupieds extends AbstractTimestampEntity implements Serializable {
 		this.durationMinutes = durationMinutes;
 	}
 
-	public Date getStartTime() {
+	public Time getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(Time startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getEndTime() {
+	public Time getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(Time endTime) {
 		this.endTime = endTime;
 	}
 

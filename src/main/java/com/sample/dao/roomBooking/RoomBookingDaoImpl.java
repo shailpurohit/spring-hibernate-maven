@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sample.model.roomBooking.Facility;
 import com.sample.model.roomBooking.Location;
+import com.sample.model.roomBooking.Occupieds;
 import com.sample.model.roomBooking.Purpose;
 import com.sample.model.roomBooking.Room;
 
@@ -64,6 +65,17 @@ public class RoomBookingDaoImpl implements RoomBookingDao {
 				.list();
 		tx.commit();
 		return locationList;
+	}
+
+	@Override
+	public boolean bookARoom(Occupieds occupy) throws Exception {
+		session = sessionFactory.openSession();
+		tx = session.beginTransaction();
+		session.save(occupy);
+		tx.commit();
+		session.close();
+
+		return false;
 	}
 
 }
