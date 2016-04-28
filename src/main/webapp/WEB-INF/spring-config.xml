@@ -31,6 +31,7 @@
 				<value>com.sample.model.roomBooking.Location</value>
 				<value>com.sample.model.roomBooking.Facility</value>
 				<value>com.sample.model.roomBooking.Purpose</value>
+				<value>com.sample.model.roomBooking.Occupieds</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
